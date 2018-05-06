@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class for Yatzy dice rolling game score calculation
 class Yatzy
   attr_reader :dices
 
@@ -9,5 +10,9 @@ class Yatzy
 
   def chance
     dices.sum
+  end
+
+  def ones
+    dices.select { |dice| dice == 1 }.sum
   end
 end
