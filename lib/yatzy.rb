@@ -12,33 +12,33 @@ class Yatzy
     dices.sum
   end
 
-  # %I[ones twos threes fours fives sixes].each.with_index do |face, idx|
-  #   define_method(face) { sum_of(idx + 1) }
+  %I[ones twos threes fours fives sixes].each.with_index do |face, idx|
+    define_method(face) { sum_of(idx + 1) }
+  end
+
+  # def ones
+  #   sum_of(1)
   # end
 
-  def ones
-    sum_of(1)
-  end
+  # def twos
+  #   sum_of(2)
+  # end
 
-  def twos
-    sum_of(2)
-  end
+  # def threes
+  #   sum_of(3)
+  # end
 
-  def threes
-    sum_of(3)
-  end
+  # def fours
+  #   sum_of(4)
+  # end
 
-  def fours
-    sum_of(4)
-  end
+  # def fives
+  #   sum_of(5)
+  # end
 
-  def fives
-    sum_of(5)
-  end
-
-  def sixes
-    sum_of(6)
-  end
+  # def sixes
+  #   sum_of(6)
+  # end
 
   def yatzy
     dices.uniq.size == 1 ? 50 : 0
@@ -54,25 +54,25 @@ class Yatzy
     [four_of_a_kind, two_of_a_kind].max
   end
 
-  # %I[
-  #   two_of_a_kind
-  #   three_of_a_kind
-  #   four_of_a_kind
-  # ].each.with_index do |kind_of, idx|
-  #   define_method(kind_of) { sum_of_a_kind(idx + 2) }
+  %I[
+    two_of_a_kind
+    three_of_a_kind
+    four_of_a_kind
+  ].each.with_index do |kind_of, idx|
+    define_method(kind_of) { sum_of_a_kind(idx + 2) }
+  end
+
+  # def two_of_a_kind
+  #   sum_of_a_kind(2)
   # end
 
-  def two_of_a_kind
-    sum_of_a_kind(2)
-  end
+  # def three_of_a_kind
+  #   sum_of_a_kind(3)
+  # end
 
-  def three_of_a_kind
-    sum_of_a_kind(3)
-  end
-
-  def four_of_a_kind
-    sum_of_a_kind(4)
-  end
+  # def four_of_a_kind
+  #   sum_of_a_kind(4)
+  # end
 
   def small_straight
     dices == [1, 2, 3, 4, 5] ? chance : 0
