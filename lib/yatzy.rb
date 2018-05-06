@@ -12,8 +12,32 @@ class Yatzy
     dices.sum
   end
 
-  %I[ones twos threes fours fives sixes].each.with_index do |face, idx|
-    define_method(face) { sum_of(idx + 1) }
+  # %I[ones twos threes fours fives sixes].each.with_index do |face, idx|
+  #   define_method(face) { sum_of(idx + 1) }
+  # end
+
+  def ones
+    sum_of(1)
+  end
+
+  def twos
+    sum_of(2)
+  end
+
+  def threes
+    sum_of(3)
+  end
+
+  def fours
+    sum_of(4)
+  end
+
+  def fives
+    sum_of(5)
+  end
+
+  def sixes
+    sum_of(6)
   end
 
   def yatzy
@@ -27,7 +51,19 @@ class Yatzy
   def two_pairs
     return 0 if dices.uniq.size > 3
 
-    [four_of_a_kind, sum_of_a_kind(2)].max
+    [four_of_a_kind, two_of_a_kind].max
+  end
+
+  # %I[
+  #   two_of_a_kind
+  #   three_of_a_kind
+  #   four_of_a_kind
+  # ].each.with_index do |kind_of, idx|
+  #   define_method(kind_of) { sum_of_a_kind(idx + 2) }
+  # end
+
+  def two_of_a_kind
+    sum_of_a_kind(2)
   end
 
   def three_of_a_kind
