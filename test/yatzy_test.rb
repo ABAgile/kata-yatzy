@@ -56,4 +56,10 @@ describe Yatzy do
     assert_equal 6, Yatzy.new('1-1-2-2-2').two_pairs
     assert_equal 8, Yatzy.new('1-2-2-2-2').two_pairs
   end
+
+  it 'should calculuate three_of_a_kind score' do
+    assert_equal 9, Yatzy.new('3-3-3-4-5').three_of_a_kind
+    assert_equal 0, Yatzy.new('3-3-4-5-6').three_of_a_kind
+    assert_equal 9, Yatzy.new('1-3-3-3-3').three_of_a_kind
+  end
 end
