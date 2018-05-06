@@ -32,39 +32,34 @@ class Yatzy
     end
   end
 
-  def two_pairs
-    faces = dices.uniq
-    return 0 if faces.size > 3
+  def of_a_kind(num)
+    uniq_faces = dices.uniq
 
-    faces.reduce(0) do |memo, face|
+    return 0 if (num == 2 && uniq_faces.size > 3) ||
+                (num == 3 && uniq_faces.size > 3) ||
+                (num == 4 && uniq_faces.size > 2)
+
+    uniq_faces.reduce(0) do |memo, face|
       count = dices.count { |dice| dice == face }
-      if count >= 4
-        4 * face
-      elsif count >= 2
-        2 * face
+      if count >= 2 * num
+        2 * num * face
+      elsif count >= num
+        num * face
       else
         0
       end + memo
     end
   end
 
-  def three_of_a_kind
-    faces = dices.uniq
-    return 0 if faces.size > 3
+  def two_pairs
+    of_a_kind(2)
+  end
 
-    faces.each do |face|
-      return 3 * face if dices.count { |dice| dice == face } >= 3
-    end
+  def three_of_a_kind
+    of_a_kind(3)
   end
 
   def four_of_a_kind
-    faces = dices.uniq
-    return 0 if faces.size > 2
-
-    faces.each do |face|
-      return 4 * face if dices.count { |dice| dice == face } >= 4
-    end
-
-    0
+    of_a_kind(4)
   end
 end
