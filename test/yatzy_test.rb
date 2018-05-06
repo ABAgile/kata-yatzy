@@ -42,4 +42,11 @@ describe Yatzy do
     assert_equal 50, Yatzy.new('1-1-1-1-1').yatzy
     assert_equal 0,  Yatzy.new('1-1-1-1-2').yatzy
   end
+
+  it 'should calculuate pair score' do
+    assert_equal 8,  Yatzy.new('3-3-3-4-4').pair
+    assert_equal 12, Yatzy.new('1-1-2-6-6').pair
+    assert_equal 6,  Yatzy.new('1-3-3-3-4').pair
+    assert_equal 6,  Yatzy.new('1-3-3-3-3').pair
+  end
 end
