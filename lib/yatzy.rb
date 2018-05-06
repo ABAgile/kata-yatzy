@@ -32,20 +32,6 @@ class Yatzy
     end
   end
 
-  def of_a_kind(num)
-    dices.uniq.reduce(0) do |memo, face|
-      count = dices.count { |dice| dice == face }
-
-      if count >= 2 * num
-        2 * num * face
-      elsif count >= num
-        num * face
-      else
-        0
-      end + memo
-    end
-  end
-
   def two_pairs
     dices.uniq.size > 3 ? 0 : of_a_kind(2)
   end
@@ -64,5 +50,21 @@ class Yatzy
 
   def large_straight
     dices == [2, 3, 4, 5, 6] ? chance : 0
+  end
+
+  private
+
+  def of_a_kind(num)
+    dices.uniq.reduce(0) do |memo, face|
+      count = dices.count { |dice| dice == face }
+
+      if count >= 2 * num
+        2 * num * face
+      elsif count >= num
+        num * face
+      else
+        0
+      end + memo
+    end
   end
 end
