@@ -15,4 +15,8 @@ class Yatzy
   def ones
     dices.select { |dice| dice == 1 }.sum
   end
+
+  def twos
+    dices.select { |dice| dice == 2 }.sum
+  end
 end
