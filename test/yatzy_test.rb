@@ -62,4 +62,10 @@ describe Yatzy do
     assert_equal 0, Yatzy.new('3-3-4-5-6').three_of_a_kind
     assert_equal 9, Yatzy.new('1-3-3-3-3').three_of_a_kind
   end
+
+  it 'should calculuate four_of_a_kind score' do
+    assert_equal 8, Yatzy.new('2-2-2-2-5').four_of_a_kind
+    assert_equal 0, Yatzy.new('2-2-2-5-5').four_of_a_kind
+    assert_equal 8, Yatzy.new('2-2-2-2-2').four_of_a_kind
+  end
 end
