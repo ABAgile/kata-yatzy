@@ -62,4 +62,12 @@ class Yatzy
   def four_of_a_kind
     of_a_kind(4)
   end
+
+  def small_straight
+    dices == [1, 2, 3, 4, 5] ? chance : 0
+  end
+
+  def large_straight
+    dices == [2, 3, 4, 5, 6] ? chance : 0
+  end
 end
