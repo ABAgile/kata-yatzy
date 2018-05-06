@@ -21,4 +21,14 @@ class Yatzy
   def yatzy
     dices.uniq.size == 1 ? 50 : 0
   end
+
+  def pair
+    dices.uniq.sort.reverse.tap do |sorted_faces|
+      return 0 if sorted_faces.size >= 5
+
+      sorted_faces.each do |face|
+        return 2 * face if dices.count { |dice| dice == face } >= 2
+      end
+    end
+  end
 end
