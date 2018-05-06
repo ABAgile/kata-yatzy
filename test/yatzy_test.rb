@@ -17,4 +17,10 @@ describe Yatzy do
     assert_equal 1, Yatzy.new('1-2-2-3-5').ones
     assert_equal 0, Yatzy.new('3-3-3-4-5').ones
   end
+
+  it 'should calculuate twos score' do
+    assert_equal 2, Yatzy.new('1-1-2-4-4').twos
+    assert_equal 4, Yatzy.new('1-2-2-3-5').twos
+    assert_equal 0, Yatzy.new('3-3-3-4-5').twos
+  end
 end
