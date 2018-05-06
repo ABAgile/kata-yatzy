@@ -46,6 +46,12 @@ class Yatzy
     dices == [2, 3, 4, 5, 6] ? chance : 0
   end
 
+  def full_house
+    return 0 if dices.uniq.size != 2 || four_of_a_kind != 0
+
+    chance
+  end
+
   private
 
   def sum_of(face)
