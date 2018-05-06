@@ -19,4 +19,20 @@ class Yatzy
   def twos
     dices.select { |dice| dice == 2 }.sum
   end
+
+  def threes
+    dices.select { |dice| dice == 3 }.sum
+  end
+
+  def fours
+    dices.select { |dice| dice == 4 }.sum
+  end
+
+  def fives
+    dices.select { |dice| dice == 5 }.sum
+  end
+
+  def sixes
+    dices.select { |dice| dice == 6 }.sum
+  end
 end
