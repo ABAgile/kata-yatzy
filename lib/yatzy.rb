@@ -56,4 +56,15 @@ class Yatzy
       return 3 * face if dices.count { |dice| dice == face } >= 3
     end
   end
+
+  def four_of_a_kind
+    faces = dices.uniq
+    return 0 if faces.size > 2
+
+    faces.each do |face|
+      return 4 * face if dices.count { |dice| dice == face } >= 4
+    end
+
+    0
+  end
 end
