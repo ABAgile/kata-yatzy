@@ -17,4 +17,8 @@ class Yatzy
   %I[ones twos threes fours fives sixes].each.with_index do |face, idx|
     define_method(face) { chance(only: idx + 1) }
   end
+
+  def yatzy
+    dices.uniq.size == 1 ? 50 : 0
+  end
 end
