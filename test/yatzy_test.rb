@@ -68,4 +68,16 @@ describe Yatzy do
     assert_equal 0, Yatzy.new('2-2-2-5-5').four_of_a_kind
     assert_equal 8, Yatzy.new('2-2-2-2-2').four_of_a_kind
   end
+
+  it 'should calculuate small_straight score' do
+    assert_equal 15, Yatzy.new('1-2-3-4-5').small_straight
+    assert_equal 0,  Yatzy.new('2-2-2-5-5').small_straight
+    assert_equal 0,  Yatzy.new('2-3-4-5-6').small_straight
+  end
+
+  it 'should calculuate large_straight score' do
+    assert_equal 0,  Yatzy.new('1-2-3-4-5').large_straight
+    assert_equal 0,  Yatzy.new('2-2-2-5-5').large_straight
+    assert_equal 20, Yatzy.new('2-3-4-5-6').large_straight
+  end
 end
