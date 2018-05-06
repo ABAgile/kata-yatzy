@@ -80,4 +80,10 @@ describe Yatzy do
     assert_equal 0,  Yatzy.new('2-2-2-5-5').large_straight
     assert_equal 20, Yatzy.new('2-3-4-5-6').large_straight
   end
+
+  it 'should calculuate full_house score' do
+    assert_equal 8, Yatzy.new('1-1-2-2-2').full_house
+    assert_equal 0, Yatzy.new('2-2-3-3-4').full_house
+    assert_equal 0, Yatzy.new('4-4-4-4-4').full_house
+  end
 end
