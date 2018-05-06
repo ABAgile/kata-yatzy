@@ -8,14 +8,12 @@ class Yatzy
     @dices = dices.split('-').map(&:to_i)
   end
 
-  def chance(only: nil)
-    return dices.sum if only.nil?
-
-    dices.select { |dice| dice == only }.sum
+  def chance
+    dices.sum
   end
 
   %I[ones twos threes fours fives sixes].each.with_index do |face, idx|
-    define_method(face) { chance(only: idx + 1) }
+    define_method(face) { sum_of(idx + 1) }
   end
 
   def yatzy
@@ -23,13 +21,13 @@ class Yatzy
   end
 
   def pair
-    first_pair = dices.uniq.sort.reverse.find { |face| count_of(face) > 1 }
-
-    first_pair.nil? ? 0 : 2 * first_pair
+    2 * dices.uniq.sort.reverse.find { |face| count_of(face) > 1 }.to_i
   end
 
   def two_pairs
-    dices.uniq.size > 3 ? 0 : of_a_kind(2)
+    return 0 if dices.uniq.size > 3
+
+    [four_of_a_kind, of_a_kind(2)].max
   end
 
   def three_of_a_kind
@@ -50,6 +48,10 @@ class Yatzy
 
   private
 
+  def sum_of(face)
+    dices.select { |dice| dice == face }.sum
+  end
+
   def count_of(face)
     dices.count { |dice| dice == face }
   end
@@ -58,9 +60,7 @@ class Yatzy
     dices.uniq.reduce(0) do |memo, face|
       count = count_of(face)
 
-      if count >= 2 * num
-        2 * num * face
-      elsif count >= num
+      if count >= num
         num * face
       else
         0
