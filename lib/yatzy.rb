@@ -31,4 +31,20 @@ class Yatzy
       end
     end
   end
+
+  def two_pairs
+    faces = dices.uniq
+    return 0 if faces.size > 3
+
+    faces.reduce(0) do |memo, face|
+      count = dices.count { |dice| dice == face }
+      if count >= 4
+        4 * face
+      elsif count >= 2
+        2 * face
+      else
+        0
+      end + memo
+    end
+  end
 end
