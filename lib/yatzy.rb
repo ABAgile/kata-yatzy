@@ -21,21 +21,21 @@ class Yatzy
   end
 
   def pair
-    2 * dices.uniq.sort.reverse.find { |face| count_of(face) > 1 }.to_i
+    2 * of_a_kind(2).max.to_i
   end
 
   def two_pairs
     return 0 if dices.uniq.size > 3
 
-    [four_of_a_kind, of_a_kind(2)].max
+    [four_of_a_kind, sum_of_a_kind(2)].max
   end
 
   def three_of_a_kind
-    of_a_kind(3)
+    sum_of_a_kind(3)
   end
 
   def four_of_a_kind
-    of_a_kind(4)
+    sum_of_a_kind(4)
   end
 
   def small_straight
@@ -63,14 +63,10 @@ class Yatzy
   end
 
   def of_a_kind(num)
-    dices.uniq.reduce(0) do |memo, face|
-      count = count_of(face)
+    dices.uniq.select { |face| count_of(face) >= num }
+  end
 
-      if count >= num
-        num * face
-      else
-        0
-      end + memo
-    end
+  def sum_of_a_kind(num)
+    of_a_kind(num).reduce(0) { |memo, face| memo + (num * face) }
   end
 end
