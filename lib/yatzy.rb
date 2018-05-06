@@ -23,13 +23,9 @@ class Yatzy
   end
 
   def pair
-    dices.uniq.sort.reverse.tap do |sorted_faces|
-      return 0 if sorted_faces.size >= 5
+    first_pair = dices.uniq.sort.reverse.find { |face| count_of(face) > 1 }
 
-      sorted_faces.each do |face|
-        return 2 * face if dices.count { |dice| dice == face } >= 2
-      end
-    end
+    first_pair.nil? ? 0 : 2 * first_pair
   end
 
   def two_pairs
@@ -54,9 +50,13 @@ class Yatzy
 
   private
 
+  def count_of(face)
+    dices.count { |dice| dice == face }
+  end
+
   def of_a_kind(num)
     dices.uniq.reduce(0) do |memo, face|
-      count = dices.count { |dice| dice == face }
+      count = count_of(face)
 
       if count >= 2 * num
         2 * num * face
