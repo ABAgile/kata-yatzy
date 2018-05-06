@@ -8,31 +8,13 @@ class Yatzy
     @dices = dices.split('-').map(&:to_i)
   end
 
-  def chance
-    dices.sum
+  def chance(only: nil)
+    return dices.sum if only.nil?
+
+    dices.select { |dice| dice == only }.sum
   end
 
-  def ones
-    dices.select { |dice| dice == 1 }.sum
-  end
-
-  def twos
-    dices.select { |dice| dice == 2 }.sum
-  end
-
-  def threes
-    dices.select { |dice| dice == 3 }.sum
-  end
-
-  def fours
-    dices.select { |dice| dice == 4 }.sum
-  end
-
-  def fives
-    dices.select { |dice| dice == 5 }.sum
-  end
-
-  def sixes
-    dices.select { |dice| dice == 6 }.sum
+  %I[ones twos threes fours fives sixes].each.with_index do |face, idx|
+    define_method(face) { chance(only: idx + 1) }
   end
 end
