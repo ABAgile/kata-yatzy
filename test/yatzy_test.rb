@@ -37,4 +37,9 @@ describe Yatzy do
     assert_equal 0, Yatzy.new('1-2-2-3-5').sixes
     assert_equal 0, Yatzy.new('3-3-3-4-5').sixes
   end
+
+  it 'should calculuate yatzy score' do
+    assert_equal 50, Yatzy.new('1-1-1-1-1').yatzy
+    assert_equal 0,  Yatzy.new('1-1-1-1-2').yatzy
+  end
 end
