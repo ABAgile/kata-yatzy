@@ -25,7 +25,7 @@ class Yatzy
   end
 
   def two_pairs
-    return 0 if dices.uniq.size > 3
+    return 0 if of_a_kind(2).size != 2 && of_a_kind(4).empty?
 
     [four_of_a_kind, two_of_a_kind].max
   end

@@ -103,6 +103,7 @@ describe 'two_pairs score' do
     assert_equal 0, subject.call('1-1-2-3-4')
     assert_equal 6, subject.call('1-1-2-2-2')
     assert_equal 8, subject.call('1-2-2-2-2')
+    assert_equal 0, subject.call('1-2-2-2-3')
   end
 end
 
