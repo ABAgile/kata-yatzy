@@ -51,12 +51,67 @@ describe Yatzy do
     dice = [5, 5, 4, 4, 3]
     assert_equal 10, Yatzy.fives(dice)
   end
+
   it 'sixes' do
     dice = [6, 6, 4, 4, 3]
     assert_equal 12, Yatzy.sixes(dice)
   end
   it 'pair' do
     dice = [3, 3, 3, 4, 4]
-    assert_equal 14, Yatzy.pair(dice)
+    assert_equal 8, Yatzy.pair(dice)
+  end
+
+  it 'two pairs' do
+    dice = [3, 3, 4, 4, 5]
+
+    assert_equal 14, Yatzy.two_pair(dice)
+  end
+
+  it 'two pairs' do
+    dice = [1, 1, 2, 3, 4]
+
+    assert_equal 0, Yatzy.two_pair(dice)
+  end
+
+  it 'three of a kind' do
+    dice = [1, 1, 1, 3, 4]
+    assert_equal 3, Yatzy.three_of_a_kind(dice)
+
+    dice2 = [5, 1, 1, 3, 4]
+    assert_equal 0, Yatzy.three_of_a_kind(dice2)
+  end
+
+  it 'four of a kind' do
+    dice = [1, 1, 1, 1, 4]
+    assert_equal 4, Yatzy.four_of_a_kind(dice)
+
+    dice2 = [5, 1, 1, 3, 4]
+    assert_equal 0, Yatzy.four_of_a_kind(dice2)
+  end
+
+  it 'small straight' do
+    dice = [1, 2, 3, 4, 5]
+    assert_equal 15, Yatzy.small_straight(dice)
+
+    dice = [1, 5, 3, 4, 5]
+    assert_equal 0, Yatzy.small_straight(dice)
+  end
+
+
+  it 'big straight' do
+    dice = [2, 3, 4, 5, 6]
+    assert_equal 20, Yatzy.big_straight(dice)
+
+    dice = [1, 5, 3, 4, 5]
+    assert_equal 0, Yatzy.big_straight(dice)
+  end
+
+
+  it 'full_house' do
+    dice = [3, 3, 3, 2, 2]
+    assert_equal 13, Yatzy.full_house(dice)
+
+    dice = [1, 5, 3, 4, 5]
+    assert_equal 0, Yatzy.full_house(dice)
   end
 end
