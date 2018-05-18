@@ -12,8 +12,8 @@ class Yatzy
     dices.sum
   end
 
-  %I[ones twos threes fours fives sixes].each.with_index do |face, idx|
-    define_method(face) { sum_of(idx + 1) }
+  %I[ones twos threes fours fives sixes].each.with_index(1) do |face, idx|
+    define_method(face) { dices.count(idx) * idx }
   end
 
   def yatzy
@@ -25,48 +25,35 @@ class Yatzy
   end
 
   def two_pairs
-    return 0 if of_a_kind(2).size != 2 && of_a_kind(4).empty?
-
-    [four_of_a_kind, two_of_a_kind].max
+    of_a_kind(2).size != 2 ? 0 : sum_of_a_kind(2)
   end
 
   %I[
-    two_of_a_kind
     three_of_a_kind
     four_of_a_kind
-  ].each.with_index do |kind_of, idx|
-    define_method(kind_of) { sum_of_a_kind(idx + 2) }
+  ].each.with_index(3) do |name, idx|
+    define_method(name) { sum_of_a_kind(idx) }
   end
 
   def small_straight
-    dices == [1, 2, 3, 4, 5] ? chance : 0
+    dices == [1, 2, 3, 4, 5] ? 15 : 0
   end
 
   def large_straight
-    dices == [2, 3, 4, 5, 6] ? chance : 0
+    dices == [2, 3, 4, 5, 6] ? 20 : 0
   end
 
   def full_house
-    return 0 if dices.uniq.size != 2 || four_of_a_kind != 0
-
-    chance
+    of_a_kind(3).size == 1 && of_a_kind(2).size == 2 ? chance : 0
   end
 
   private
 
-  def sum_of(face)
-    dices.select { |dice| dice == face }.sum
-  end
-
-  def count_of(face)
-    dices.count { |dice| dice == face }
-  end
-
   def of_a_kind(num)
-    dices.uniq.select { |face| count_of(face) >= num }
+    dices.uniq.select { |face| dices.count(face) >= num }
   end
 
   def sum_of_a_kind(num)
-    of_a_kind(num).reduce(0) { |memo, face| memo + (num * face) }
+    of_a_kind(num).map { |face| num * face }.sum
   end
 end
