@@ -24,38 +24,29 @@ describe Yatzy do
     assert_equal 50, Yatzy.yatzy(dice)
   end
 
-  it 'ones' do
+  it 'count' do
     dice = [1, 1, 2, 2, 2]
-    assert_equal 2, Yatzy.ones(dice)
+    assert_equal 2, Yatzy.count(dice, 1)
 
     dice = [1, 1, 1, 1, 2]
-    assert_equal 4, Yatzy.ones(dice)
-  end
+    assert_equal 4, Yatzy.count(dice, 1)
 
-  it 'twos' do
     dice = [1, 1, 2, 2, 2]
-    assert_equal 6, Yatzy.twos(dice)
-  end
+    assert_equal 6, Yatzy.count(dice, 2)
 
-  it 'threes' do
     dice = [1, 1, 3, 3, 3]
-    assert_equal 9, Yatzy.threes(dice)
-  end
+    assert_equal 9, Yatzy.count(dice, 3)
 
-  it 'fours' do
     dice = [1, 1, 4, 4, 3]
-    assert_equal 8, Yatzy.fours(dice)
-  end
+    assert_equal 8, Yatzy.count(dice, 4)
 
-  it 'fives' do
     dice = [5, 5, 4, 4, 3]
-    assert_equal 10, Yatzy.fives(dice)
+    assert_equal 10, Yatzy.count(dice, 5)
+
+    dice = [6, 6, 4, 4, 3]
+    assert_equal 12, Yatzy.count(dice, 6)
   end
 
-  it 'sixes' do
-    dice = [6, 6, 4, 4, 3]
-    assert_equal 12, Yatzy.sixes(dice)
-  end
   it 'pair' do
     dice = [3, 3, 3, 4, 4]
     assert_equal 8, Yatzy.pair(dice)
