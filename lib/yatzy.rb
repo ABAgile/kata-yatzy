@@ -33,11 +33,7 @@ class Yatzy
   end
 
   def yatzy
-    if @dices.uniq.count == 1
-      50
-    else
-      0
-    end
+    @dices.uniq.count == 1 ? 50 : 0
   end
 
   def pair
