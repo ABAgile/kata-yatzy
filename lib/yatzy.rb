@@ -4,32 +4,36 @@ class Yatzy
     @dices = dices.split('-').map(&:to_i)
   end
 
+  def each_num_score(num)
+    @dices.select{|x| x == num}.sum
+  end
+
   def chance
     @dices.sum
   end
 
   def ones
-    @dices.select {|x| x == 1}.sum
+    each_num_score(1)
   end
 
   def twos
-    @dices.select {|x| x == 2}.sum
+    each_num_score(2)
   end
 
   def threes
-    @dices.select {|x| x == 3}.sum
+    each_num_score(3)
   end
 
   def fours
-    @dices.select {|x| x == 4}.sum
+    each_num_score(4)
   end
 
   def fives
-    @dices.select {|x| x == 5}.sum
+    each_num_score(5)
   end
 
   def sixes
-    @dices.select {|x| x == 6}.sum
+    each_num_score(6)
   end
 
   def yatzy
