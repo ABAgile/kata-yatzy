@@ -78,20 +78,34 @@ describe Yatzy do
   end
 
   it 'small straight' do
-    dice = [1, 2, 3, 4, 5]
-    assert_equal 15, Yatzy.small_straight(dice)
-
-    dice = [1, 5, 3, 4, 5]
-    assert_equal 0, Yatzy.small_straight(dice)
+    [
+      [[1, 2, 3, 4, 5], 15],
+      [[5, 4, 3, 2, 1], 15],
+      [[2, 3, 4, 5, 6], 0],
+      [[1, 1, 3, 4, 5], 0],
+      [[1, 1, 3, 3, 5], 0],
+      [[1, 1, 1, 4, 5], 0],
+      [[1, 1, 1, 1, 5], 0],
+      [[1, 1, 1, 1, 1], 0]
+    ].each do |dice, expect_result|
+      assert_equal expect_result, Yatzy.small_straight(dice)
+    end
   end
 
 
   it 'big straight' do
-    dice = [2, 3, 4, 5, 6]
-    assert_equal 20, Yatzy.big_straight(dice)
-
-    dice = [1, 5, 3, 4, 5]
-    assert_equal 0, Yatzy.big_straight(dice)
+    [
+      [[2, 3, 4, 5, 6], 20],
+      [[6, 5, 4, 3, 2], 20],
+      [[1, 2, 3, 4, 5], 0],
+      [[1, 1, 3, 4, 5], 0],
+      [[1, 1, 3, 3, 5], 0],
+      [[1, 1, 1, 4, 5], 0],
+      [[1, 1, 1, 1, 5], 0],
+      [[1, 1, 1, 1, 1], 0]
+    ].each do |dice, expect_result|
+      assert_equal expect_result, Yatzy.big_straight(dice)
+    end
   end
 
 
