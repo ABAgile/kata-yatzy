@@ -2,6 +2,7 @@
 class Yatzy
   def initialize(dices)
     @dices = dices.split('-').map(&:to_i)
+    @dice_range = [1, 2, 3 ,4 ,5, 6]
   end
 
   def each_num_score(num)
@@ -41,14 +42,14 @@ class Yatzy
   end
 
   def pair
-    [6,5,4,3,2,1].each do |num|
+    @dice_range.reverse_each do |num|
       return num*2 if @dices.count(num) >= 2
     end
   end
 
   def two_pairs
     num_cal= []
-    [1,2,3,4,5,6].each do |num|
+    @dice_range.each do |num|
       num_cal << num if @dices.count(num) >= 2
     end
     num_cal.size == 2 ? num_cal.sum*2 : 0
@@ -56,7 +57,7 @@ class Yatzy
 
   def three_of_a_kind
     num_cal = []
-    [1,2,3,4,5,6].each do |num|
+    @dice_range.each do |num|
       num_cal << num if @dices.count(num) >= 3
     end
     num_cal.size == 1 ? num_cal.sum*3 : 0
@@ -64,7 +65,7 @@ class Yatzy
 
   def four_of_a_kind
     num_cal = []
-    [1,2,3,4,5,6].each do |num|
+    @dice_range.each do |num|
       num_cal << num if @dices.count(num) >= 4
     end
     num_cal.size == 1 ? num_cal.sum*4 : 0
