@@ -110,10 +110,17 @@ describe Yatzy do
 
 
   it 'full_house' do
-    dice = [3, 3, 3, 2, 2]
-    assert_equal 13, Yatzy.full_house(dice)
-
-    dice = [1, 5, 3, 4, 5]
-    assert_equal 0, Yatzy.full_house(dice)
+    [
+      [[1, 2, 3, 4, 5], 0],
+      [[1, 1, 3, 4, 5], 0],
+      [[1, 1, 3, 3, 5], 0],
+      [[1, 1, 1, 4, 5], 0],
+      [[1, 1, 1, 1, 5], 0],
+      [[1, 1, 1, 1, 1], 0],
+      [[1, 1, 3, 3, 5], 0],
+      [[1, 1, 1, 3, 3], 9]
+    ].each do |dice, expect_result|
+      assert_equal expect_result, Yatzy.full_house(dice)
+    end
   end
 end
