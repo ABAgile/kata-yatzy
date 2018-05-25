@@ -10,7 +10,7 @@ class Yatzy
   end
 
   def point_out_kind_of_score(dice_num)
-    # pair(2) : [1,1,2,2,4] => [1,2]
+    # pair(2) : [1,1,2,2,4] => [1,2] ,  third(3) : [1,1,1,3,4] => [1]
     num_cal= []
     @dice_range.each do |num|
       num_cal << num if @dices.count(num) >= dice_num
@@ -77,10 +77,6 @@ class Yatzy
   end
 
   def full_house
-    num_cal = []
-    @dice_range.each do |num|
-      num_cal << num if @dices.count(num) >= 2 && @dices.uniq.count == 2
-    end
-    num_cal.size == 2 ? @dices.sum : 0
+    point_out_kind_of_score(2).size == 2 && @dices.uniq.count == 2 ? @dices.sum : 0
   end
 end
