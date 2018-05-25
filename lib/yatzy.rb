@@ -9,6 +9,15 @@ class Yatzy
     @dices.select{|x| x == num}.sum
   end
 
+  def point_out_kind_of_score(dice_num)
+    # pair(2) : [1,1,2,2,4] => [1,2]
+    num_cal= []
+    @dice_range.each do |num|
+      num_cal << num if @dices.count(num) >= dice_num
+    end
+    num_cal
+  end
+
   def chance
     @dices.sum
   end
@@ -48,27 +57,15 @@ class Yatzy
   end
 
   def two_pairs
-    num_cal= []
-    @dice_range.each do |num|
-      num_cal << num if @dices.count(num) >= 2
-    end
-    num_cal.size == 2 ? num_cal.sum*2 : 0
+    point_out_kind_of_score(2).size == 2? point_out_kind_of_score(2).sum*2 : 0
   end
 
   def three_of_a_kind
-    num_cal = []
-    @dice_range.each do |num|
-      num_cal << num if @dices.count(num) >= 3
-    end
-    num_cal.size == 1 ? num_cal.sum*3 : 0
+    point_out_kind_of_score(3).size == 1? point_out_kind_of_score(3).sum*3 : 0
   end
 
   def four_of_a_kind
-    num_cal = []
-    @dice_range.each do |num|
-      num_cal << num if @dices.count(num) >= 4
-    end
-    num_cal.size == 1 ? num_cal.sum*4 : 0
+    point_out_kind_of_score(4).size == 1? point_out_kind_of_score(4).sum*4 : 0
   end
 
   def small_straight
@@ -81,7 +78,7 @@ class Yatzy
 
   def full_house
     num_cal = []
-    [1,2,3,4,5,6].each do |num|
+    @dice_range.each do |num|
       num_cal << num if @dices.count(num) >= 2 && @dices.uniq.count == 2
     end
     num_cal.size == 2 ? @dices.sum : 0
