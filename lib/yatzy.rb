@@ -45,7 +45,7 @@ class Yatzy
   end
 
   def self.n_of_sum(dice, n)
-    result = group(dice).select{ |k, v| v == n }.sort_by{ |k, v| k }.to_h
+    result = group(dice).select{ |k, v| v >= n }.sort_by{ |k, v| k }.to_h
     (result.size == 0) ? 0 : result.sum{|k, _| k * n}
   end
 end

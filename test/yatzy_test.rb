@@ -38,12 +38,12 @@ describe Yatzy do
   it 'pair' do
     [
       [[1, 2, 3, 4, 5], 0], # no pair
-      [[1, 1, 3, 4, 5], 2], # pair
-      [[1, 1, 1, 4, 5], 0], # three of a kind
-      [[1, 1, 1, 1, 5], 0], # foure of a kind
-      [[1, 1, 1, 1, 1], 0], # Yahtzee
+      [[1, 1, 3, 4, 5], 2], # one pair
+      [[1, 1, 1, 4, 5], 2], # one pair
+      [[1, 1, 1, 1, 5], 2], # one pair
+      [[1, 1, 1, 1, 1], 2], # one pair
       [[1, 1, 3, 3, 5], 8], # two pair
-      [[1, 1, 1, 3, 3], 6]  # one pair
+      [[1, 1, 1, 3, 3], 8]  # two pair
     ].each do |dice, expect_result|
       assert_equal expect_result, Yatzy.pair(dice)
     end
@@ -54,8 +54,8 @@ describe Yatzy do
       [[1, 2, 3, 4, 5], 0],
       [[1, 1, 3, 4, 5], 0],
       [[1, 1, 1, 4, 5], 3],
-      [[1, 1, 1, 1, 5], 0],
-      [[1, 1, 1, 1, 1], 0],
+      [[1, 1, 1, 1, 5], 3],
+      [[1, 1, 1, 1, 1], 3],
       [[1, 1, 3, 3, 5], 0],
       [[1, 1, 1, 3, 3], 3]
     ].each do |dice, expect_result|
@@ -69,7 +69,7 @@ describe Yatzy do
       [[1, 1, 3, 4, 5], 0],
       [[1, 1, 1, 4, 5], 0],
       [[1, 1, 1, 1, 5], 4],
-      [[1, 1, 1, 1, 1], 0],
+      [[1, 1, 1, 1, 1], 4],
       [[1, 1, 3, 3, 5], 0],
       [[1, 1, 1, 3, 3], 0]
     ].each do |dice, expect_result|
