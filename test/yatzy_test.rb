@@ -25,26 +25,28 @@ describe Yatzy do
   end
 
   it 'count' do
-    dice = [1, 1, 2, 2, 2]
-    assert_equal 2, Yatzy.count(dice, 1)
+    pattern = -> (count_type, num) do
+      case count_type
+      when 1 then [num, 2,   3,   4,   5]
+      when 2 then [num, num, 3,   4,   5]
+      when 3 then [num, num, num, 4,   5]
+      when 4 then [num, num, num, num, 5]
+      when 5 then [num, num, num, num, num]
+      end
+    end
 
-    dice = [1, 1, 1, 1, 2]
-    assert_equal 4, Yatzy.count(dice, 1)
-
-    dice = [1, 1, 2, 2, 2]
-    assert_equal 6, Yatzy.count(dice, 2)
-
-    dice = [1, 1, 3, 3, 3]
-    assert_equal 9, Yatzy.count(dice, 3)
-
-    dice = [1, 1, 4, 4, 3]
-    assert_equal 8, Yatzy.count(dice, 4)
-
-    dice = [5, 5, 4, 4, 3]
-    assert_equal 10, Yatzy.count(dice, 5)
-
-    dice = [6, 6, 4, 4, 3]
-    assert_equal 12, Yatzy.count(dice, 6)
+    [
+      [[1, 6],             1], # 1*1, 6*1
+      [[1, 2, 6],          2], # 1*2, 2*2, 6*2
+      [[1, 2, 3, 6],       3], # 1*3, 2*3, 3*3, 6*3
+      [[1, 2, 3, 4, 6],    4], # 1*4, 2*4, 3*4, 4*4, 6*4
+      [[1, 2, 3, 4, 5, 6], 5]  # 1*5, 2*5, 3*5, 4*5, 5*5
+    ].each do |replace_vars, count_type|
+      replace_vars.each do |replace_val|
+        dice = pattern.call(count_type, replace_val)
+        assert_equal count_type * replace_val, Yatzy.count(dice, replace_val)
+      end
+    end
   end
 
   it 'pair' do
