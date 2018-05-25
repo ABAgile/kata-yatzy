@@ -6,22 +6,21 @@ require 'minitest/pride'
 require_relative '../lib/yatzy'
 
 describe Yatzy do
-  # let(:subject) { Yatzy }
-  # let(:default_dice) { [1,2,3,4,6] }
-
-  it 'should calculate correct chance' do
-    # dice = default_dice
+  it 'chance' do
     dice = [1,2,3,4,6]
-
-    # sum = subject.new(dice).score
-
-    assert_equal 16, Yatzy.score(dice)
+    assert_equal 16, Yatzy.chance(dice)
   end
 
   it 'yatzy' do
-    dice = [1, 1, 1, 1, 1]
-
-    assert_equal 50, Yatzy.yatzy(dice)
+    [
+      [[1, 2, 3, 4, 5], 0],
+      [[1, 1, 3, 4, 5], 0],
+      [[1, 1, 1, 4, 5], 0],
+      [[1, 1, 1, 1, 5], 0],
+      [[1, 1, 1, 1, 1], 50]
+    ].each do |dice, expect_result|
+      assert_equal expect_result, Yatzy.yatzy(dice)
+    end
   end
 
   it 'count' do

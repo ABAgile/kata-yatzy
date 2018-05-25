@@ -1,18 +1,12 @@
 # frozen_string_literal: true
 
 class Yatzy
-  # attr_accessor :sum_score
-
-  # def initialize(dice)
-  #   dice = dice
-  # end
-
-  def self.score(dice)
+  def self.chance(dice)
     dice.sum
   end
 
   def self.yatzy(dice)
-    return 50 if dice.uniq.size == 1
+    (dice.uniq.size == 1) ? 50 : 0
   end
 
   def self.count(dice, number)
