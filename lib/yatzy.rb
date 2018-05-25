@@ -16,7 +16,7 @@ class Yatzy
   end
 
   def self.count(dice, number)
-    return dice.count(number) * number
+    group(dice).fetch(number, 0) * number
   end
 
   def self.group(dice)
