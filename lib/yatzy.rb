@@ -2,16 +2,16 @@
 class Yatzy
   def initialize(dices)
     @dices = dices.split('-').map(&:to_i)
-    @dice_range = [1, 2, 3 ,4 ,5, 6]
+    @dice_range = [1, 2, 3, 4, 5, 6]
   end
 
   def each_num_score(num)
-    @dices.select{|x| x == num}.sum
+    @dices.select { |x| x == num }.sum
   end
 
-  def point_out_kind_of_score(dice_num)
+  def point_kind_score(dice_num)
     # pair(2) : [1,1,2,2,4] => [1,2] ,  third(3) : [1,1,1,3,4] => [1]
-    num_cal= []
+    num_cal = []
     @dice_range.each do |num|
       num_cal << num if @dices.count(num) >= dice_num
     end
@@ -51,30 +51,30 @@ class Yatzy
   end
 
   def pair
-    point_out_kind_of_score(2).max*2
+    point_kind_score(2).max * 2
   end
 
   def two_pairs
-    point_out_kind_of_score(2).size == 2? point_out_kind_of_score(2).sum*2 : 0
+    point_kind_score(2).size == 2 ? point_kind_score(2).sum * 2 : 0
   end
 
   def three_of_a_kind
-    point_out_kind_of_score(3).size == 1? point_out_kind_of_score(3).sum*3 : 0
+    point_kind_score(3).size == 1 ? point_kind_score(3).sum * 3 : 0
   end
 
   def four_of_a_kind
-    point_out_kind_of_score(4).size == 1? point_out_kind_of_score(4).sum*4 : 0
+    point_kind_score(4).size == 1 ? point_kind_score(4).sum * 4 : 0
   end
 
   def small_straight
-    @dices.sort! == [1,2,3,4,5] ? 15 : 0
+    @dices.sort! == [1, 2, 3, 4, 5] ? 15 : 0
   end
 
   def large_straight
-    @dices.sort! == [2,3,4,5,6] ? 20 : 0
+    @dices.sort! == [2, 3, 4, 5, 6] ? 20 : 0
   end
 
   def full_house
-    point_out_kind_of_score(2).size == 2 && @dices.uniq.count == 2 ? @dices.sum : 0
+    point_kind_score(2).size == 2 && @dices.uniq.count == 2 ? @dices.sum : 0
   end
 end
