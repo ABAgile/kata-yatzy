@@ -19,24 +19,14 @@ class Yatzy
     group(dice).fetch(number, 0) * number
   end
 
+  def self.pair(dice)
+    result = group(dice).select{|k, v| v == 2}.sort_by{|k, v| k }.to_h
+    (result.size == 0) ? 0 : result.sum{|k, _| k * 2}
+  end
+
   def self.group(dice)
     # {2 => 4, 1 => 1}
     Hash[dice.group_by{|k| k}.map{|k, v| [k, v.size]}]
-  end
-
-  def self.pair(dice)
-    (1..6).reverse_each do |num|
-      return num * 2 if dice.count(num) >= 2
-    end
-    0
-  end
-
-  def self.two_pair(dice)
-    return 0 unless group(dice).values.select{|v| v >= 2}.size == 2
-
-    (1..6).map do |num|
-      dice.count(num) >= 2 ? num * 2 : 0
-    end.sum
   end
 
   def self.three_of_a_kind(dice)

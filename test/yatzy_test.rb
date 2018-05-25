@@ -37,20 +37,17 @@ describe Yatzy do
   end
 
   it 'pair' do
-    dice = [3, 3, 3, 4, 4]
-    assert_equal 8, Yatzy.pair(dice)
-  end
-
-  it 'two pairs' do
-    dice = [3, 3, 4, 4, 5]
-
-    assert_equal 14, Yatzy.two_pair(dice)
-  end
-
-  it 'two pairs' do
-    dice = [1, 1, 2, 3, 4]
-
-    assert_equal 0, Yatzy.two_pair(dice)
+    [
+      [[1, 2, 3, 4, 5], 0], # no pair
+      [[1, 1, 3, 4, 5], 2], # pair
+      [[1, 1, 1, 4, 5], 0], # three of a kind
+      [[1, 1, 1, 1, 5], 0], # foure of a kind
+      [[1, 1, 1, 1, 1], 0], # Yahtzee
+      [[1, 1, 3, 3, 5], 8], # two pair
+      [[1, 1, 1, 3, 3], 6]  # one pair
+    ].each do |dice, expect_result|
+      assert_equal expect_result, Yatzy.pair(dice)
+    end
   end
 
   it 'three of a kind' do
