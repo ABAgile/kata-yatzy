@@ -6,7 +6,7 @@ class Yatzy
   end
 
   def each_num_score(num)
-    @dices.select { |x| x == num }.sum
+    @dices.select { |dice| dice == num }.sum
   end
 
   def point_kind_score(dice_num)
@@ -55,7 +55,8 @@ class Yatzy
   end
 
   def two_pairs
-    point_kind_score(2).size == 2 ? point_kind_score(2).sum * 2 : 0
+    num_arry = point_kind_score(2)
+    num_arry.size == 2 ? num_arry.sum * 2 : 0
   end
 
   def three_of_a_kind
