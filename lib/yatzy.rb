@@ -51,9 +51,7 @@ class Yatzy
   end
 
   def pair
-    @dice_range.reverse_each do |num|
-      return num*2 if @dices.count(num) >= 2
-    end
+    point_out_kind_of_score(2).max*2
   end
 
   def two_pairs
