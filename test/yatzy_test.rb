@@ -153,5 +153,6 @@ describe 'full_house score' do
     assert_equal 8, subject.call('1-1-2-2-2')
     assert_equal 0, subject.call('2-2-3-3-4')
     assert_equal 0, subject.call('4-4-4-4-4')
+    assert_equal 0, subject.call('1-4-4-4-4')
   end
 end

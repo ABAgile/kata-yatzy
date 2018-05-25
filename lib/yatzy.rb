@@ -75,7 +75,10 @@ class Yatzy
   end
 
   def full_house
-    @dices.uniq.count == 2 ? @dices.sum : 0
+    num_cal = []
+    [1,2,3,4,5,6].each do |num|
+      num_cal << num if @dices.count(num) >= 2 && @dices.uniq.count == 2
+    end
+    num_cal.size == 2 ? @dices.sum : 0
   end
-
 end
