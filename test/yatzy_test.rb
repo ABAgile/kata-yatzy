@@ -50,19 +50,31 @@ describe Yatzy do
   end
 
   it 'three of a kind' do
-    dice = [1, 1, 1, 3, 4]
-    assert_equal 3, Yatzy.three_of_a_kind(dice)
-
-    dice2 = [5, 1, 1, 3, 4]
-    assert_equal 0, Yatzy.three_of_a_kind(dice2)
+    [
+      [[1, 2, 3, 4, 5], 0],
+      [[1, 1, 3, 4, 5], 0],
+      [[1, 1, 1, 4, 5], 3],
+      [[1, 1, 1, 1, 5], 0],
+      [[1, 1, 1, 1, 1], 0],
+      [[1, 1, 3, 3, 5], 0],
+      [[1, 1, 1, 3, 3], 3]
+    ].each do |dice, expect_result|
+      assert_equal expect_result, Yatzy.three_of_a_kind(dice)
+    end
   end
 
   it 'four of a kind' do
-    dice = [1, 1, 1, 1, 4]
-    assert_equal 4, Yatzy.four_of_a_kind(dice)
-
-    dice2 = [5, 1, 1, 3, 4]
-    assert_equal 0, Yatzy.four_of_a_kind(dice2)
+    [
+      [[1, 2, 3, 4, 5], 0],
+      [[1, 1, 3, 4, 5], 0],
+      [[1, 1, 1, 4, 5], 0],
+      [[1, 1, 1, 1, 5], 4],
+      [[1, 1, 1, 1, 1], 0],
+      [[1, 1, 3, 3, 5], 0],
+      [[1, 1, 1, 3, 3], 0]
+    ].each do |dice, expect_result|
+      assert_equal expect_result, Yatzy.four_of_a_kind(dice)
+    end
   end
 
   it 'small straight' do

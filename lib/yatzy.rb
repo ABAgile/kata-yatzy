@@ -23,12 +23,17 @@ class Yatzy
     Hash[dice.group_by{|k| k}.map{|k, v| [k, v.size]}]
   end
 
+  def self.n_of_a_kind(dice, n)
+    result = group(dice).select{ |k, v| v == n }.sort_by{ |k, v| k }.to_h
+    (result.size == 0) ? 0 : result.sum{|k, _| k * n}
+  end
+
   def self.three_of_a_kind(dice)
-    (group(dice).find{|k,v| v >= 3}&.first || 0) * 3
+    n_of_a_kind(dice, 3)
   end
 
   def self.four_of_a_kind(dice)
-    (group(dice).find{|k,v| v >= 4}&.first || 0) * 4
+    n_of_a_kind(dice, 4)
   end
 
   def self.small_straight(dice)
