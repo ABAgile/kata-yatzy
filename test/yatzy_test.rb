@@ -15,4 +15,9 @@ describe Yatzy do
   it 'Yatzy' do
     assert_equal Yatzy.new(dice).get_score, 50
   end
+
+  it 'Four of a Kind' do
+    dice = [1,1,1,1,4]
+    assert_equal Yatzy.new(dice).get_score, 4
+  end
 end

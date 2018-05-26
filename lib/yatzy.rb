@@ -23,16 +23,26 @@ class Yatzy
   end
 
   def get_score
-    score = case
-            when yatzy?
-              50
-            end
-    score
+    case
+    when yatzy? then 50
+    when four_of_a_kind? then four_of_a_kind_score
+    else
+      0
+    end
   end
 
   private
 
   def yatzy?
     group.values.any?(5)
+  end
+
+  def four_of_a_kind?
+    group.values.any?(4)
+    group.map{ |k, v| k if v == 4 }
+  end
+
+  def four_of_a_kind_score
+    group.sum{ |k, v| (v == 4) ? k * v : 0 }
   end
 end
